@@ -2,6 +2,10 @@ import React from 'react'
 import {Component} from 'react'
 import * as axios from 'axios'
 import styles from  '../Trending.css'
+import Table from './Table'
+import Pagination from "react-pagination-library";
+import "react-pagination-library/build/css/index.css"; 
+
 class Trending extends Component{ 
     
 
@@ -24,7 +28,7 @@ componentDidMount(){
      }) 
     }
 
-    onPageChanged=(pageNumber)=>{
+onPageChanged=(pageNumber)=>{
         this.props.setCurrentPage(pageNumber);
         axios({
             url: `https://api.trakt.tv/shows/trending?page=${pageNumber}limit=${this.props.pageLimit}`,
@@ -43,7 +47,7 @@ componentDidMount(){
 
 
 
-    render(){
+render(){
 
     let pagesCount = this.props.pageCount;
 
@@ -51,32 +55,25 @@ componentDidMount(){
     for (let i=1; i<= pagesCount; i++ ){
         pages.push(i);
     }
+
+    
+
+    const myshows = this.props.shows;
     return( 
         <div className="container"> 
-            <h4 className ="center"> Trending, page: {this.props.currentPage}</h4>
-            <div>
-               {pages.map(p=>{
-                  return <span key = {p} className={this.props.currentPage === p ? styles.selectedPage:undefined}onClick={()=>{this.onPageChanged(p);}}>  {p}  </span>
-               })}
-            </div>
-            <div> </div>
+            <h4 className ="center"> Trending</h4>
+            <Table shows={myshows} />
+            <Pagination
+                currentPage={this.props.currentPage}
+                totalPages={this.props.pageCount}
+                changeCurrentPage={this.onPageChanged}
+                theme="bottom-border"
+                />
             <div>      </div>
-            
-            {
-                this.props.shows.map(s => <div key ={s.show.ids.trakt}>
-                    <span>
-                    
-                        <div>{s.show.title}</div>
-                        <div>Watchers: {s.watchers}</div>
-                        <div>Year: {s.show.year}</div>
-                        <div>Trakt id: {s.show.ids.trakt}</div>
-                        <div>TVDB id: {s.show.ids.tvdb}</div>
-                        <div>----</div>
-                    </span>
-                    </div>)
-            }
+           
         </div> 
     ) 
     }
 }
+
 export default Trending;
