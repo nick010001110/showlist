@@ -23,7 +23,6 @@ const SimpleTable = (props) =>{
 
 const classes = useStyles();
 
-console.log(props);
 const rows= props.shows;
   return (
     <Paper className={classes.root}>
