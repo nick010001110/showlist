@@ -9,6 +9,12 @@ import { setCurrentLanguagesAC } from '../reducers/rootReducer';
 import { setCurrentGenresAC } from '../reducers/rootReducer';
 import { setPageCountAC } from '../reducers/rootReducer';
 
+
+import { setQueryAC } from '../reducers/rootReducer';
+import { setYearsAC } from '../reducers/rootReducer';
+import { setCountriesAC } from '../reducers/rootReducer';
+import { setСurrentCountriesAC } from '../reducers/rootReducer';
+
 let mapStateToProps = (state) =>{
     return{
         shows: state.shows,
@@ -19,6 +25,14 @@ let mapStateToProps = (state) =>{
         currentPage: state.currentPage,
         currentGenres: state.currentGenres,
         currentLanguages: state.currentLanguages,
+
+        countries:state.countries,
+        currentCountries: state.currentCountries,
+
+
+        
+        query: state.query,
+        years: state.years,
     }
 }
 
@@ -44,7 +58,27 @@ let mapDispatchToProps = (dispatch)=>{
         },
         setPageCount:(pageCount)=>{
             dispatch(setPageCountAC(pageCount));
-        }
+        },
+
+
+        setQuery:(query)=>{
+            dispatch(setQueryAC(query));
+        },
+        setYears:(years)=>{
+            dispatch(setYearsAC(years));
+        },
+
+
+        
+        setCountries:(countries)=>{
+            dispatch(setCountriesAC(countries));
+        },
+        setСurrentCountries:(currentCountries)=>{
+            dispatch(setСurrentCountriesAC(currentCountries));
+        },
+
+
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Trending)

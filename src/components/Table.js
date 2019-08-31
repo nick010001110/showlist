@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -23,7 +24,12 @@ const SimpleTable = (props) =>{
 
 const classes = useStyles();
 
-const rows= props.shows;
+let rows= props.shows;
+
+
+
+
+
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -33,7 +39,7 @@ const rows= props.shows;
             <TableCell align="right">Watchers</TableCell>
             <TableCell align="right">Year</TableCell>
             <TableCell align="right">Trakt</TableCell>
-            <TableCell align="right">TVDB</TableCell>
+            <TableCell align="right">Poster URL or TVDB id</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
