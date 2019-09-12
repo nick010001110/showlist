@@ -25,9 +25,9 @@ const SimpleTable = (props) =>{
 const classes = useStyles();
 
 let rows= props.shows;
+let number = (props.page-1)*props.limit; ;
 
-
-
+console.log(props.currentPage);
 
 
   return (
@@ -35,8 +35,9 @@ let rows= props.shows;
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
+            <TableCell>№</TableCell>
             <TableCell>Title</TableCell>
-            <TableCell align="right">Watchers</TableCell>
+         
             <TableCell align="right">Year</TableCell>
             <TableCell align="right">Trakt</TableCell>
             <TableCell align="right">Poster URL or TVDB id</TableCell>
@@ -44,11 +45,11 @@ let rows= props.shows;
         </TableHead>
         <TableBody>
           {rows.map(row => (
+            number++,
             <TableRow key={row.show.ids.trakt}>
-              <TableCell component="th" scope="row">
-                {row.show.title}
-              </TableCell>
-              <TableCell align="right">{row.watchers}</TableCell>
+              <TableCell align="right">{number}</TableCell>
+              <TableCell component="th" scope="row">{row.show.title}</TableCell>
+              
               <TableCell align="right">{row.show.year}</TableCell>
               <TableCell align="right">{row.show.ids.trakt}</TableCell>
               <TableCell align="right">{row.show.ids.tvdb}</TableCell>

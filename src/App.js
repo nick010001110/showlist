@@ -4,8 +4,9 @@ import { BrowserRouter, Route} from 'react-router-dom'
 import Home from './components/Home'
 
 import Home2 from './components/Home2'
-import Show from './components/Show'
-import ShowsContainer from './components/ShowsContainer';
+
+import TrendingShowsContainer from './components/TrendingShowsContainer';
+
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
     <div className="App">
      <Navbar/>
      <Route exact path='/' component={Home} />
-     <Route path='/trending' component={ShowsContainer} />
+     <Route path='/trending' component={TrendingShowsContainer} />
+     
      <Route path='/home2' component={Home2} />
-     <Route path='/shows/:show_id' component={Show} />
+  
      
     </div>
     </BrowserRouter>
