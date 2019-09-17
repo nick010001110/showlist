@@ -71,4 +71,4 @@ let mapDispatchToProps = (dispatch)=>{
 
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Trending)
+export default connect(mapStateToProps, mapDispatchToProps)(Popular)
