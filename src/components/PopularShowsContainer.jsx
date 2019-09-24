@@ -1,70 +1,68 @@
 
 import {connect} from "react-redux"
-import Trending from './Trending'
+
 import Popular from './Popular'
-import { setShowsAC,setGenresAC,setLanguagesAC,setCurrentPageAC,setCurrentLanguagesAC, setCurrentGenresAC, setPageCountAC, setQueryAC ,setYearsAC, setCountriesAC, setСurrentCountriesAC} from '../reducers/rootReducer';
+import {setShowsAC_P, setGenresAC_P, setLanguagesAC_P, setCurrentPageAC_P, setCurrentLanguagesAC_P, setCurrentGenresAC_P, setPageCountAC_P, setQueryAC_P, setYearsAC_P, setCountriesAC_P, setСurrentCountriesAC_P} from '../reducers/rootReducer';
 
 
 let mapStateToProps = (state) =>{
+    let  {popular} = state;
     return{
-        shows: state.shows,
-        genres: state.genres,
-        languages: state.languages,
-        pageCount: state.pageCount,
-        pageLimit: state.pageLimit,
-        currentPage: state.currentPage,
-        currentGenres: state.currentGenres,
-        currentLanguages: state.currentLanguages,
+        shows: popular.shows,
+        genres: popular.genres,
+        languages: popular.languages,
+        pageCount: popular.pageCount,
+        pageLimit: popular.pageLimit,
+        currentPage: popular.currentPage,
+        currentGenres: popular.currentGenres,
+        currentLanguages: popular.currentLanguages,
 
-        countries:state.countries,
-        currentCountries: state.currentCountries,
-
-
-        
-        query: state.query,
-        years: state.years,
+        countries:popular.countries,
+        currentCountries: popular.currentCountries,
+        query: popular.query,
+        years: popular.years,
     }
 }
 
 let mapDispatchToProps = (dispatch)=>{
     return{
         setShows: (shows)=>{
-           dispatch(setShowsAC(shows));
+           dispatch(setShowsAC_P(shows));
         },
         setGenres: (genres)=>{
-           dispatch(setGenresAC(genres));
+           dispatch(setGenresAC_P(genres));
         },
         setLanguages: (languages)=>{
-           dispatch(setLanguagesAC(languages));
+           dispatch(setLanguagesAC_P(languages));
         },
         setCurrentPage:(page)=>{
-            dispatch(setCurrentPageAC(page));
+            dispatch(setCurrentPageAC_P(page));
         },
         setCurrentLanguages:(languages)=>{
-            dispatch(setCurrentLanguagesAC(languages));
+            dispatch(setCurrentLanguagesAC_P(languages));
         },
         setCurrentGenres:(genres)=>{
-            dispatch(setCurrentGenresAC(genres));
+            dispatch(setCurrentGenresAC_P(genres));
         },
         setPageCount:(pageCount)=>{
-            dispatch(setPageCountAC(pageCount));
+            dispatch(setPageCountAC_P(pageCount));
         },
 
 
         setQuery:(query)=>{
-            dispatch(setQueryAC(query));
+            dispatch(setQueryAC_P(query));
         },
         setYears:(years)=>{
-            dispatch(setYearsAC(years));
+            dispatch(setYearsAC_P(years));
         },
 
 
         
         setCountries:(countries)=>{
-            dispatch(setCountriesAC(countries));
+            dispatch(setCountriesAC_P(countries));
         },
         setСurrentCountries:(currentCountries)=>{
-            dispatch(setСurrentCountriesAC(currentCountries));
+            dispatch(setСurrentCountriesAC_P(currentCountries));
         },
 
 

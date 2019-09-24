@@ -1,7 +1,6 @@
 import React from 'react' 
 import {Component} from 'react'
 import * as axios from 'axios'
-import styles from  '../Trending.css'
 import Table from './TableP'
 import Pagination from "react-pagination-library";
 import "react-pagination-library/build/css/index.css"; 
@@ -11,7 +10,6 @@ import Select from './Select';
 class Popular extends Component{ 
   
 async componentDidMount(){
-    console.log("yes this is popular");
     const response = await axios({
         url: `https://api.trakt.tv/shows/popular?page=${this.props.currentPage}&limit=${this.props.pageLimit}&genres=${this.props.currentGenres}&languages=${this.props.currentLanguages}&query=${this.props.query}&years=${this.props.years}&countries=${this.props.currentCountries}`,
         method: 'get',
@@ -118,7 +116,7 @@ onLangComboboxChange=(value)=>{
         let languages = this.props.languages;
         let myres=[]; 
         value.forEach(function(element) {
-            myres.push(languages.find(lang=>lang.name==element));
+            myres.push(languages.find(lang=>lang.name===element));
         });
         myres.forEach(function(element) {
             res.push(element.code);
@@ -174,7 +172,7 @@ onGenreComboboxChange=(value)=>{
         let genres = this.props.genres;
         let myres=[]; 
         value.forEach(function(element) {
-            myres.push(genres.find(lang=>lang.name==element));
+            myres.push(genres.find(lang=>lang.name===element));
         });
         myres.forEach(function(element) {
             res.push(element.slug);
@@ -228,7 +226,7 @@ onCountriesComboboxChange=(value)=>{
         let countries = this.props.countries;
         let myres=[]; 
         value.forEach(function(element) {
-            myres.push(countries.find(coun=>coun.name==element));
+            myres.push(countries.find(coun=>coun.name===element));
         });
         myres.forEach(function(element) {
             res.push(element.code);

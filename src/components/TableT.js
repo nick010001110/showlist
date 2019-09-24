@@ -25,8 +25,8 @@ const SimpleTable = (props) =>{
 const classes = useStyles();
 
 let rows= props.shows;
-let number = (props.page-1)*props.limit; ;
-let url;
+let number = (props.page-1)*props.limit; 
+
 
 
 
@@ -52,7 +52,7 @@ let url;
                   <TableCell component="th" scope="row">{row.show.title}</TableCell>
                   <TableCell align="right">{row.show.year}</TableCell>
                   <TableCell align="right">{row.show.ids.trakt}</TableCell>
-                  <TableCell align="right">  <a href={row.show.ids.tvdb} target="_blank"> {" "}{row.show.ids.tvdb}</a> </TableCell>
+                  <TableCell align="right">  <a href={row.show.ids.tvdb} target="_blank" rel="noopener noreferrer"> {" "}{row.show.ids.tvdb}</a> </TableCell>
                   </TableRow>
                   ) 
                :  
