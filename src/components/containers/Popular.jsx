@@ -1,17 +1,29 @@
 import React from 'react' 
 import {Component} from 'react'
 import * as axios from 'axios'
-import Table from './TableT'
+import Table from '../presentational/TableP'
 import Pagination from "react-pagination-library";
 import "react-pagination-library/build/css/index.css"; 
-import Select from './Select';
+import Select from '../presentational/Select';
 
 
-class Trending extends Component{ 
+class Popular extends Component{ 
+
+
+componentWillUnmount(){
+    this.props.setCurrentGenres('');
+    this.props.setCurrentLanguages('');
+    this.props.setСurrentCountries('');
+    this.props.setQuery('');
+    this.props.setYears('');
+    this.props.setCurrentPage(1);
+    this.props.setShows([]);      
+    this.props.setPageCount(0);   
+}
   
 async componentDidMount(){
     const response = await axios({
-        url: `https://api.trakt.tv/shows/trending?page=${this.props.currentPage}&limit=${this.props.pageLimit}&genres=${this.props.currentGenres}&languages=${this.props.currentLanguages}&query=${this.props.query}&years=${this.props.years}&countries=${this.props.currentCountries}`,
+        url: `https://api.trakt.tv/shows/popular?page=${this.props.currentPage}&limit=${this.props.pageLimit}&genres=${this.props.currentGenres}&languages=${this.props.currentLanguages}&query=${this.props.query}&years=${this.props.years}&countries=${this.props.currentCountries}`,
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
@@ -24,10 +36,10 @@ async componentDidMount(){
     for(const row of imgs){
         try {
             const response = await axios({
-                  url: `http://webservice.fanart.tv/v3/tv/${row.show.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
+                  url: `http://webservice.fanart.tv/v3/tv/${row.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
                   method: 'get',   
             });
-             row.show.ids.tvdb = response.data.tvposter[0].url;
+             row.ids.tvdb = response.data.tvposter[0].url;
             } catch (error) {}
         };
     this.props.setShows(imgs);
@@ -79,7 +91,7 @@ onPageChanged=(pageNumber)=>{
         
         async function pageChange(props){
         const response = await axios({
-            url: `https://api.trakt.tv/shows/trending?page=${pageNumber}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${props.query}&years=${props.years}&countries=${props.currentCountries}`,
+            url: `https://api.trakt.tv/shows/popular?page=${pageNumber}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${props.query}&years=${props.years}&countries=${props.currentCountries}`,
             method: 'get',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,10 +104,10 @@ onPageChanged=(pageNumber)=>{
         for(const row of imgs){
             try {
                 const response = await axios({
-                      url: `http://webservice.fanart.tv/v3/tv/${row.show.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
+                      url: `http://webservice.fanart.tv/v3/tv/${row.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
                       method: 'get',   
                 });
-                 row.show.ids.tvdb = response.data.tvposter[0].url;
+                 row.ids.tvdb = response.data.tvposter[0].url;
                 } catch (error) {}
             };
         props.setShows(imgs);
@@ -126,7 +138,7 @@ onLangComboboxChange=(value)=>{
 
         async function pageChange(props){
             const response = await axios({
-                url: `https://api.trakt.tv/shows/trending?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${res.join()}&query=${props.query}&years=${props.years}&countries=${props.currentCountries}`,
+                url: `https://api.trakt.tv/shows/popular?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${res.join()}&query=${props.query}&years=${props.years}&countries=${props.currentCountries}`,
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
@@ -139,13 +151,14 @@ onLangComboboxChange=(value)=>{
             for(const row of imgs){
                 try {
                     const response = await axios({
-                          url: `http://webservice.fanart.tv/v3/tv/${row.show.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
+                          url: `http://webservice.fanart.tv/v3/tv/${row.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
                           method: 'get',   
                     });
-                     row.show.ids.tvdb = response.data.tvposter[0].url;
+                     row.ids.tvdb = response.data.tvposter[0].url;
                     } catch (error) {}
                 };
             props.setShows(imgs);
+            props.setPageCount(response.headers['x-pagination-page-count']);
             }
             try {
                 pageChange(this.props);
@@ -182,7 +195,7 @@ onGenreComboboxChange=(value)=>{
 
         async function pageChange(props){
             const response = await axios({
-                url: `https://api.trakt.tv/shows/trending?page=${1}&limit=${props.pageLimit}&genres=${res.join()}&languages=${props.currentLanguages}&query=${props.query}&years=${props.years}&countries=${props.currentCountries}`,
+                url: `https://api.trakt.tv/shows/popular?page=${1}&limit=${props.pageLimit}&genres=${res.join()}&languages=${props.currentLanguages}&query=${props.query}&years=${props.years}&countries=${props.currentCountries}`,
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
@@ -195,13 +208,14 @@ onGenreComboboxChange=(value)=>{
             for(const row of imgs){
                 try {
                     const response = await axios({
-                          url: `http://webservice.fanart.tv/v3/tv/${row.show.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
+                          url: `http://webservice.fanart.tv/v3/tv/${row.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
                           method: 'get',   
                     });
-                     row.show.ids.tvdb = response.data.tvposter[0].url;
+                     row.ids.tvdb = response.data.tvposter[0].url;
                     } catch (error) {}
                 };
             props.setShows(imgs);
+            props.setPageCount(response.headers['x-pagination-page-count']);
             }
             try {
                 pageChange(this.props);
@@ -237,7 +251,7 @@ onCountriesComboboxChange=(value)=>{
 
         async function pageChange(props){
             const response = await axios({
-                url: `https://api.trakt.tv/shows/trending?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${props.query}&years=${props.years}&countries=${res.join()}`,
+                url: `https://api.trakt.tv/shows/popular?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${props.query}&years=${props.years}&countries=${res.join()}`,
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
@@ -253,10 +267,11 @@ onCountriesComboboxChange=(value)=>{
                           url: `http://webservice.fanart.tv/v3/tv/${row.show.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
                           method: 'get',   
                     });
-                     row.show.ids.tvdb = response.data.tvposter[0].url;
+                     row.ids.tvdb = response.data.tvposter[0].url;
                     } catch (error) {}
                 };
             props.setShows(imgs);
+            props.setPageCount(response.headers['x-pagination-page-count']);
             }
             try {
                 pageChange(this.props);
@@ -281,7 +296,7 @@ handleChangeQuery=(e)=>{
 
         async function pageChange(props){
             const response = await axios({
-                url: `https://api.trakt.tv/shows/trending?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${e.target.value}&years=${props.years}&countries=${props.currentCountries}`,
+                url: `https://api.trakt.tv/shows/popular?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${e.target.value}&years=${props.years}&countries=${props.currentCountries}`,
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
@@ -297,10 +312,11 @@ handleChangeQuery=(e)=>{
                           url: `http://webservice.fanart.tv/v3/tv/${row.show.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
                           method: 'get',   
                     });
-                     row.show.ids.tvdb = response.data.tvposter[0].url;
+                     row.ids.tvdb = response.data.tvposter[0].url;
                     } catch (error) {}
                 };
             props.setShows(imgs);
+            props.setPageCount(response.headers['x-pagination-page-count']);
             }
             try {
                 pageChange(this.props);
@@ -318,7 +334,7 @@ handleChangeYears=(e)=>{
 
         async function pageChange(props){
             const response = await axios({
-                url: `https://api.trakt.tv/shows/trending?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${props.query}&years=${e.target.value}&countries=${props.currentCountries}`,
+                url: `https://api.trakt.tv/shows/popular?page=${1}&limit=${props.pageLimit}&genres=${props.currentGenres}&languages=${props.currentLanguages}&query=${props.query}&years=${e.target.value}&countries=${props.currentCountries}`,
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
@@ -331,13 +347,14 @@ handleChangeYears=(e)=>{
             for(const row of imgs){
                 try {
                     const response = await axios({
-                          url: `http://webservice.fanart.tv/v3/tv/${row.show.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
+                          url: `http://webservice.fanart.tv/v3/tv/${row.ids.tvdb}?api_key=1296f15c399158e5046966fa404c88ff`,
                           method: 'get',   
                     });
-                     row.show.ids.tvdb = response.data.tvposter[0].url;
+                     row.ids.tvdb = response.data.tvposter[0].url;
                     } catch (error) {}
                 };
             props.setShows(imgs);
+            props.setPageCount(response.headers['x-pagination-page-count']);
             }
             try {
                 pageChange(this.props);
@@ -354,7 +371,7 @@ render(){
     const{ genres,languages,shows,countries} = this.props;
     return( 
         <div className="container"> 
-            <h4 className ="center"> Trending</h4>
+            <h4 className ="center"> Popular</h4>
             <label > Search titles and descriptions
                  <input type="text" onChange={this.handleChangeQuery}/>
             </label>
@@ -378,4 +395,4 @@ render(){
     }
 }
 
-export default Trending;
+export default Popular;

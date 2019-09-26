@@ -2,7 +2,7 @@
 import {connect} from "react-redux"
 
 import Popular from './Popular'
-import {setShowsAC_P, setGenresAC_P, setLanguagesAC_P, setCurrentPageAC_P, setCurrentLanguagesAC_P, setCurrentGenresAC_P, setPageCountAC_P, setQueryAC_P, setYearsAC_P, setCountriesAC_P, setСurrentCountriesAC_P} from '../reducers/popular';
+import {setShowsAC_P, setGenresAC_P, setLanguagesAC_P, setCurrentPageAC_P, setCurrentLanguagesAC_P, setCurrentGenresAC_P, setPageCountAC_P, setQueryAC_P, setYearsAC_P, setCountriesAC_P, setСurrentCountriesAC_P} from '../../reducers/popular';
 
 
 let mapStateToProps = (state) =>{

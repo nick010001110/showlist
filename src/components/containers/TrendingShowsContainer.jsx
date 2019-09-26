@@ -1,7 +1,7 @@
 
 import {connect} from "react-redux"
 import Trending from './Trending'
-import { setShowsAC_T,setGenresAC_T,setLanguagesAC_T,setCurrentPageAC_T,setCurrentLanguagesAC_T, setCurrentGenresAC_T, setPageCountAC_T, setQueryAC_T ,setYearsAC_T, setCountriesAC_T, setСurrentCountriesAC_T} from '../reducers/trending';
+import { setShowsAC_T,setGenresAC_T,setLanguagesAC_T,setCurrentPageAC_T,setCurrentLanguagesAC_T, setCurrentGenresAC_T, setPageCountAC_T, setQueryAC_T ,setYearsAC_T, setCountriesAC_T, setСurrentCountriesAC_T} from '../../reducers/trending';
 
 
 let mapStateToProps = (state) =>{

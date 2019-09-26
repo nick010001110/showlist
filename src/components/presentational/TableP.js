@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SimpleTable = (props) =>{
+export default function SimpleTable(props){
 
 const classes = useStyles();
 
@@ -42,11 +42,12 @@ let number = (props.page-1)*props.limit;
             </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
+              {rows.map(row => ( // eslint-disable-next-line
                 number++,
-    
                 row.ids.tvdb.length>8 ? 
-                  (<TableRow key={row.ids.trakt}>
+                  (
+                    
+                    <TableRow key={row.ids.trakt}>
                   <TableCell align="right">{number}</TableCell>
                   <TableCell component="th" scope="row">{row.title}</TableCell>
                   <TableCell align="right">{row.year}</TableCell>
@@ -71,4 +72,4 @@ let number = (props.page-1)*props.limit;
 }
  // 
 
-export default  SimpleTable 
+

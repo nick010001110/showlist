@@ -1,12 +1,10 @@
 import React from 'react'
-import Navbar from './components/Navbar'
+import Navbar from './components/presentational/Navbar'
 import { BrowserRouter, Route} from 'react-router-dom'
-import Home from './components/Home'
 
-import Home2 from './components/Home2'
 
-import TrendingShowsContainer from './components/TrendingShowsContainer';
-import PopularShowsContainer from './components/PopularShowsContainer';
+import TrendingShowsContainer from './components/containers/TrendingShowsContainer';
+import PopularShowsContainer from './components/containers/PopularShowsContainer';
 
 
 function App() {
@@ -14,11 +12,12 @@ function App() {
     <BrowserRouter>
     <div className="App">
      <Navbar/>
-     <Route exact path='/' component={Home} />
-     <Route path='/trending' component={TrendingShowsContainer} />
-     <Route path='/popular' component={PopularShowsContainer} />
+   
+     <Route exact path='/trending' component={TrendingShowsContainer} />
+     <Route exact path='/' component={TrendingShowsContainer} />
+     <Route exact path='/popular' component={PopularShowsContainer} />
      
-     <Route path='/home2' component={Home2} />
+   
   
      
     </div>
