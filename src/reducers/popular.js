@@ -21,13 +21,17 @@ const initState ={
         shows: [],
         genres: [],
         languages: [],
-        pageLimit: 10,
-        pageCount: 0,
-        currentPage: 1,
+        countries:[],
+
         currentGenres: '',
         currentLanguages: '',
         currentCountries: '',
-        countries:[],
+        
+        pageLimit: 10,
+        pageCount: 222,
+        currentPage: 1,
+     
+       
         query: '',
         years: '',
     

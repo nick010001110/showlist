@@ -7,6 +7,7 @@ import TrendingShowsContainer from './components/containers/TrendingShowsContain
 import PopularShowsContainer from './components/containers/PopularShowsContainer';
 
 
+
 function App() {
   return (
     <BrowserRouter>
