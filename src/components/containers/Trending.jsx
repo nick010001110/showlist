@@ -106,7 +106,7 @@ const Trending = (props) => {
         
     // eslint-disable-next-line react-hooks/exhaustive-deps
     console.log(currentGenres, currentLanguages, currentCountries,pageLimit, pageCount, currentPage, query,years);
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [] );
 
 
@@ -174,7 +174,6 @@ const Trending = (props) => {
         }
         changePage(pageNumber);
     }
-
 
     const onLangComboboxChange=(value)=>{
         let res =[];
@@ -323,7 +322,6 @@ const Trending = (props) => {
         props.setСurrentCountries(res.join());
     }
 
-
     const handleChangeQuery=(e)=>{
         props.setQuery(e.target.value);
         let data= props;
@@ -398,7 +396,6 @@ const Trending = (props) => {
 
         props.setCurrentPage(1);
     }
-
 
 
     return( 

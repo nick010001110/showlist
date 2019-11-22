@@ -18,7 +18,6 @@ let mapStateToProps = (state) =>{
         currentPage: popular.currentPage,
         currentGenres: popular.currentGenres,
         currentLanguages: popular.currentLanguages,
-
         countries:popular.countries,
         currentCountries: popular.currentCountries,
         query: popular.query,

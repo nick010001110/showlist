@@ -28,7 +28,7 @@ const initState ={
         currentCountries: '',
         
         pageLimit: 10,
-        pageCount: 222,
+        pageCount: 0,
         currentPage: 1,
      
        

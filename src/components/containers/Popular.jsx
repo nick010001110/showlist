@@ -324,7 +324,6 @@ const Popular = (props) => {
         props.setСurrentCountries(res.join());
     }
 
-
     const handleChangeQuery=(e)=>{
         props.setQuery(e.target.value);
         let data= props;
